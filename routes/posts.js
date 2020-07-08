@@ -26,15 +26,19 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    const { name, postHeader, postBody } = req.body;
-    const post = new Post({
-        name: name,
-        postHeader: postHeader,
-        postBody: postBody
-    })
-
-    post.save()
-    res.send(post)
+    try {
+        const { name, postHeader, postBody } = req.body;
+        const post = new Post({
+            name: name,
+            postHeader: postHeader,
+            postBody: postBody
+        })
+    
+        post.save()
+        res.send(post)
+    } catch (err) {
+        console.error(err.message || err)
+    }
 
 })
 

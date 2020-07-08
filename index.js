@@ -18,11 +18,14 @@ mongoose.connect('mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/
 app.use(cors());
 app.use(bodyParser({ extended: true }));
 
-app.use('/', express.static('public'))
+
+// PROD SETUP
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('./client/build'))
+}
 
 
 // ROUTES
-
 app.use('/posts', require('./routes/posts'))
 
 
