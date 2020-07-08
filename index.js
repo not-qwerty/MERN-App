@@ -1,7 +1,8 @@
 const express = require('express');
-const cors = require('cors');
+const helmet = require('helmet')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 require('./config/prod')(app);
@@ -17,6 +18,7 @@ mongoose.connect('mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/
 // MIDDLEWARE
 app.use(cors());
 app.use(bodyParser({ extended: true }));
+app.use(helmet());
 
 
 // PROD SETUP

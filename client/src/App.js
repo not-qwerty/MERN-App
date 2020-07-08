@@ -1,11 +1,18 @@
 import React from 'react';
+import { 
+  Link,
+  Switch, 
+  Route } from 'react-router-dom';
+
+import Navbar from './components/Navbar';
+import Posts from './components/Posts';
+import CreatePost from './components/CreatePost';
 
 
 export default function App() {
 
   // (async () => {
-  //   const posts = await fetch('http://localhost:5000/posts');
-  //   const data = await posts.json();    
+  //     
 
 
   //   for (let post of data) {
@@ -16,22 +23,20 @@ export default function App() {
   //   }
 
   // })();
+
   return (
-    <div classNameName="App">
-      <nav className="navbar navbar-inverse">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="#">BlogPost</a>
-          </div>
-          <ul className="nav navbar-nav">
-            <li className="active"><a href="index.html">Home</a></li>
-            <li><a href="./createpost.html">Create a Post</a></li>
-            <li><a href="#">Our Chat</a></li>
-            <li><a href="#">Pomodoro Clock</a></li>
-          </ul>
-        </div>
-      </nav>
-    <div id='posts'></div>
-    </div>
+      <div>
+        <Navbar />
+
+
+        <Switch>
+          <Route path="/posts">
+            <Posts />
+          </Route>
+          <Route path="/create">
+            <CreatePost />
+          </Route>
+        </Switch>
+      </div>
   );
 }
