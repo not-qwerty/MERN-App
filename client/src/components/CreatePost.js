@@ -3,7 +3,11 @@ import React from 'react'
 export default function CreatePost() {
     return (
         <div>
-            <h1>Create a post</h1>
+            <form>
+                <label>Post name: <input type='text'></input></label><br></br>
+                <label>body: <input type='text'></input></label>
+                <button className='btn btn-primary' type='submit'>Post</button>
+            </form>
         </div>
     )
 }

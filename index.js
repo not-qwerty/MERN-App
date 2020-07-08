@@ -11,8 +11,8 @@ require('./config/prod')(app);
 // DATABASE CONNECT
 mongoose.connect('mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority', {
         useNewUrlParser: true, useUnifiedTopology: true
-    }).then(() => console.log('connected to database'))
-      .catch((err) => console.error(`couldn't connect`, err.message));
+    }).then(() => console.log('connected to the database'))
+      .catch((err) => console.error(`couldn't connect to the database`, err.message));
 
 
 // MIDDLEWARE

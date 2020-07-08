@@ -1,28 +1,12 @@
 import React from 'react';
-import { 
-  Link,
-  Switch, 
-  Route } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Posts from './components/Posts';
 import CreatePost from './components/CreatePost';
-
+import Chat from './components/Chat';
+import Pomodoro from './components/Pomodoro';
 
 export default function App() {
-
-  // (async () => {
-  //     
-
-
-  //   for (let post of data) {
-  //       const div = document.createElement('div');
-  //       div.classList.add('post');
-  //       div.innerHTML = `<h2>${post.postHeader}</h2><p>${post.postBody}</p>`;
-  //       document.querySelector('#posts').appendChild(div)
-  //   }
-
-  // })();
 
   return (
       <div>
@@ -35,6 +19,12 @@ export default function App() {
           </Route>
           <Route path="/create">
             <CreatePost />
+          </Route>
+          <Route path="/chat">
+            <Chat />
+          </Route>
+          <Route path="/pomodoro">
+            <Pomodoro />
           </Route>
         </Switch>
       </div>
