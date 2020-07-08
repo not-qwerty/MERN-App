@@ -13,7 +13,7 @@ export default function Navbar() {
                     <li><Link to='/posts'>Home</Link></li>
                     <li><Link to='/create'>Create a Post</Link></li>
                     <li><Link to='/chat'>Our Chat</Link></li>
-                    <li><Link to='/pomodoro'>Pomodoro Clock</Link></li>
+                    <li><Link to='/pomodoro/clock'>Pomodoro Clock</Link></li>
                 </ul>
                 </div>
             </nav>
