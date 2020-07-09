@@ -55,6 +55,7 @@ export default class TomatoClock extends Component {
 
   render() {
     const timerStyle = {
+      borderRadius: 25,
       textAlign: "center",
       borderStyle: "solid",
       fontSize: "1em",
