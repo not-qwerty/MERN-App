@@ -67,10 +67,10 @@ export default class TomatoClock extends Component {
     let displaySeconds = seconds < 10 ? "0" + seconds : seconds;
     let timeText = `${displayMinutes}:${displaySeconds}`;
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-3"></div>
-          <div class="col-xs-6">
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-3"></div>
+          <div className="col-xs-6">
             <div style={timerStyle}>
               <h1>{this.props.title}</h1>
               <h2>{timeText}</h2>
@@ -100,7 +100,7 @@ export default class TomatoClock extends Component {
               </button>
             </div>
           </div>
-          <div class="col-xs-3"></div>
+          <div className="col-xs-3"></div>
         </div>
       </div>
     );

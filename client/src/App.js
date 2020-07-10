@@ -6,9 +6,9 @@ import Navbar from "./components/Navbar";
 import Posts from "./components/Posts";
 import CreatePost from "./components/CreatePost";
 import Chat from "./components/Chat";
-import Pomodoro from "./containers/Pomodoro";
 
 // containers
+import Pomodoro from "./containers/Pomodoro";
 
 export default function App() {
   return (
