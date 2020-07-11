@@ -2,12 +2,13 @@ import React, { useState } from "react";
 
 export default function CreatePost() {
   const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [postBody, setBody] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const bodyRes = { name, postBody };
+      const bodyRes = { name, title, postBody };
       const response = await fetch("http://localhost:5000/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,17 +31,30 @@ export default function CreatePost() {
     setName(e.target.value);
   };
 
+  const handleTitleChange = (e) => {
+    e.preventDefault();
+    setTitle(e.target.value);
+  };
+
   return (
-    <div>
+    <div style={{alignItems: 'center'}}>
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
+          Enter your name: 
           <input type="text" value={name} onChange={handleNameChange} />
         </label>
+    <br />
         <label>
-          Post text:
+          Post title: 
+          <input type="text" value={title} onChange={handleTitleChange} />
+        </label>
+        <br />
+
+        <label>
+          Write a post here: 
           <input type="text" value={postBody} onChange={handleBodyChange} />
         </label>
+        <br />
         <input type="submit" value="Submit" />
       </form>
     </div>

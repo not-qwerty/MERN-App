@@ -18,14 +18,16 @@ export default function Posts() {
     <div>
       {posts.map((post) => {
         return (
-          <div key={post._id}>
+          <div key={post._id} className='container-post'>
+          <div>
             <div>
-              <h2>{post.postHeader}</h2>
+              <h2>{post.title}</h2>
             </div>
             <div>
               <p>{post.postBody}</p>
             </div>
             <p>Written by {post.name}</p>
+          </div>
           </div>
         );
       })}

@@ -24,10 +24,10 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", (req, res, next) => {
   try {
-    const { name, postHeader, postBody } = req.body;
+    const { name, title, postBody } = req.body;
     const post = new Post({
       name: name,
-      postHeader: postHeader,
+      title: title,
       postBody: postBody,
     });
 
