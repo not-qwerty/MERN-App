@@ -3,7 +3,7 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = requre("path");
+const path = require("path");
 
 const app = express();
 require("./config/prod")(app);
