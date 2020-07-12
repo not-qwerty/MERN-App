@@ -37,21 +37,26 @@ export default function CreatePost() {
   };
 
   return (
-    <div style={{alignItems: 'center'}}>
+    <div className='container'>
       <form onSubmit={handleSubmit}>
         <label>
-          Enter your name: 
-          <input type="text" value={name} onChange={handleNameChange} />
+          <div className="row">
+            <div className="col-xs-3">Enter your name:</div>
+            <div className="col-xs-6">
+              <input type="text" value={name} onChange={handleNameChange} />
+            </div>
+            <div className="col-xs-3"></div>
+          </div>
         </label>
-    <br />
+        <br />
         <label>
-          Post title: 
+          Post title:
           <input type="text" value={title} onChange={handleTitleChange} />
         </label>
         <br />
 
         <label>
-          Write a post here: 
+          Write a post here:
           <input type="text" value={postBody} onChange={handleBodyChange} />
         </label>
         <br />
