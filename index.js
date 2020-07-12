@@ -11,7 +11,6 @@ require("./config/prod")(app);
 // DATABASE CONNECT
 mongoose
   .connect(
-    process.env.MONGODB_URI ||
       "mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
