@@ -42,9 +42,9 @@ router.post("/", (req, res, next) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { postBody, postHeader } = req.body;
+    const { postBody, title } = req.body;
     const post = await Post.findByIdAndUpdate(id, {
-      postHeader: postHeader,
+      title: title,
       postBody: postBody,
     });
 
