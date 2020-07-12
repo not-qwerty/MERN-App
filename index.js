@@ -13,6 +13,7 @@ mongoose
   .connect(
     "mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority",
     {
+      useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }
