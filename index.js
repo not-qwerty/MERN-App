@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = requre("path");
 
 const app = express();
 require("./config/prod")(app);
@@ -26,13 +27,17 @@ app.use(cors());
 app.use(bodyParser({ extended: true }));
 app.use(helmet());
 
-// PROD SETUP
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./client/build"));
-}
-
 // ROUTES
 app.use("/posts", require("./routes/posts"));
+
+// PROD SETUP
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("server is up and running on port", PORT));
