@@ -16,16 +16,16 @@ export default function App() {
       <Navbar />
 
       <Switch>
-        <Route path="/posts">
+        <Route path="/api/posts">
           <Posts />
         </Route>
-        <Route path="/create">
+        <Route path="/api/create">
           <CreatePost />
         </Route>
-        <Route path="/chat">
+        <Route path="/api/chat">
           <Chat />
         </Route>
-        <Route path="/pomodoro">
+        <Route path="/api/pomodoro">
           <Pomodoro />
         </Route>
       </Switch>

@@ -32,7 +32,7 @@ app.use(helmet());
 
 // ROUTES
 app.use("/api/posts", require("./routes/posts"));
-app.use('/api', require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 
 
 
