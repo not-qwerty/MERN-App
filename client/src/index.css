@@ -21,3 +21,10 @@ code {
   word-wrap: break-word;
   padding: 20;
 }
+.timer {
+  border: solid 1px black;
+  border-radius: 25px;
+  text-align: center;
+  border-style: solid;
+  font-size: 1em;
+}
