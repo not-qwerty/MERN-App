@@ -43,14 +43,14 @@ class Pomodoro extends Component {
         </div>
         <div>
           <Switch>
-            <Route path="/pomodoro/clock">
+            <Route path="/api/pomodoro/clock">
               <TomatoClock
                 tomatoTime={this.state.tomatoTime}
                 title={this.state.tomatoTitle}
               />
             </Route>
 
-            <Route path="/pomodoro/pause">
+            <Route path="/api/pomodoro/pause">
               <PauseClock
                 pauseTime={this.state.pauseTime}
                 title={this.state.pause}

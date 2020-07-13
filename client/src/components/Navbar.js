@@ -7,22 +7,22 @@ export default function Navbar() {
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
-            <Link to="/posts">
+            <Link to="/api/posts">
               <i className="navbar-brand">BlogPost</i>
             </Link>
           </div>
           <ul className="nav navbar-nav">
             <li>
-              <Link to="/posts">Home</Link>
+              <Link to="/api/posts">Home</Link>
             </li>
             <li>
-              <Link to="/create">Create a Post</Link>
+              <Link to="/api/create">Create a Post</Link>
             </li>
             <li>
-              <Link to="/chat">Our Chat</Link>
+              <Link to="/api/chat">Our Chat</Link>
             </li>
             <li>
-              <Link to="/pomodoro/clock">Pomodoro Clock</Link>
+              <Link to="/api/pomodoro/clock">Pomodoro Clock</Link>
             </li>
           </ul>
         </div>
