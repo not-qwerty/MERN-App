@@ -14,8 +14,10 @@ export default function CreatePost() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyRes),
       });
-      console.log(response);
       alert("A post was sumbited");
+      setName('');
+      setTitle('');
+      setBody('');
     } catch (err) {
       console.error(err);
     }
@@ -60,6 +62,7 @@ export default function CreatePost() {
           <input type="text" value={postBody} onChange={handleBodyChange} />
         </label>
         <br />
+        
         <input type="submit" value="Submit" />
       </form>
     </div>
