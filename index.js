@@ -3,6 +3,8 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 require("./config/prod")(app);
@@ -24,11 +26,15 @@ mongoose
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 app.use(helmet());
 
 // ROUTES
-app.use("/posts", require("./routes/posts"));
+app.use("/api/posts", require("./routes/posts"));
+app.use('/api', require('./routes/users'));
+
+
 
 // PROD SETUP
 if (process.env.NODE_ENV === "production") {
