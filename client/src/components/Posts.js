@@ -6,7 +6,7 @@ export default function Posts() {
 
   async function getPosts() {
     try {
-      axios.get("http://localhost:5000/posts").then((res) => {
+      axios.get("posts").then((res) => {
         setPosts(res.data);
       });
     } catch (err) {

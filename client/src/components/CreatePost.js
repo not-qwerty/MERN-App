@@ -9,7 +9,7 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      axios.post("http://localhost:5000/posts", { name, title, postBody });
+      axios.post("posts", { name, title, postBody });
 
       alert("A post was sumbited");
 
