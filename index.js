@@ -1,6 +1,5 @@
 const express = require("express");
 const helmet = require("helmet");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
@@ -11,7 +10,7 @@ require("./config/prod")(app);
 // DATABASE CONNECT
 mongoose
   .connect(
-    "mongodb+srv://max:bi565KdUsZkxvLNt@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority",
+    "mongodb+srv://max:Cm3h-JCEnGDqjWP@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority",
     {
       useFindAndModify: false,
       useNewUrlParser: true,
@@ -24,8 +23,8 @@ mongoose
   );
 
 // MIDDLEWARE
+app.use(express.json());
 app.use(cors());
-app.use(bodyParser({ extended: true }));
 app.use(helmet());
 
 // ROUTES
