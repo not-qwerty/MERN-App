@@ -14,10 +14,7 @@ export default class PauseClock extends Component {
     this.handleReset = this.handleReset.bind(this);
   }
   componentDidUpdate() {
-    if (this.state.timer === 0) {
-      clearInterval(this.state.timeOutID);
-      // Here will be audio of the end of the timer
-    }
+    if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
   handleStart(e) {

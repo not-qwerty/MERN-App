@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const btnStyle = { margin: 5, width: "12vh" }
+const btnStyle = { margin: 5, width: "12vh" };
 
 export default class TomatoClock extends Component {
   constructor(props) {
@@ -18,10 +18,7 @@ export default class TomatoClock extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.timer === 0) {
-      clearInterval(this.state.timeOutID);
-      // Here will be audio of the end of the timer
-    }
+    if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
   handleStart(e) {
@@ -66,7 +63,7 @@ export default class TomatoClock extends Component {
         <div className="row">
           <div className="col-xs-3"></div>
           <div className="col-xs-6">
-            <div className='timer'>
+            <div className="timer">
               <h1>{this.props.title}</h1>
               <h2>{timeText}</h2>
               {this.state.startBtn ? (
