@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+const btnStyle = { margin: 5, width: "12vh" };
+
 export default class TomatoClock extends Component {
   constructor(props) {
     super(props);
@@ -16,10 +18,7 @@ export default class TomatoClock extends Component {
   }
 
   componentDidUpdate() {
-    if (this.state.timer === 0) {
-      clearInterval(this.state.timeOutID);
-      // Here will be audio of the end of the timer
-    }
+    if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
   handleStart(e) {
@@ -54,13 +53,6 @@ export default class TomatoClock extends Component {
   }
 
   render() {
-    const timerStyle = {
-      borderRadius: 25,
-      textAlign: "center",
-      borderStyle: "solid",
-      fontSize: "1em",
-    };
-
     let minutes = Math.floor((this.state.timer % 3600) / 60);
     let seconds = Math.floor(this.state.timer % 60);
     let displayMinutes = minutes < 10 ? "0" + minutes : minutes;
@@ -71,14 +63,14 @@ export default class TomatoClock extends Component {
         <div className="row">
           <div className="col-xs-3"></div>
           <div className="col-xs-6">
-            <div style={timerStyle}>
+            <div className="timer">
               <h1>{this.props.title}</h1>
               <h2>{timeText}</h2>
               {this.state.startBtn ? (
                 <button
                   className="btn btn-primary"
                   onClick={this.handleStart}
-                  style={{ margin: 5, width: "12vh" }}
+                  style={btnStyle}
                 >
                   Start
                 </button>
@@ -86,7 +78,7 @@ export default class TomatoClock extends Component {
                 <button
                   className="btn btn-primary"
                   onClick={this.handleStop}
-                  style={{ margin: 5, width: "12vh" }}
+                  style={btnStyle}
                 >
                   Stop
                 </button>
@@ -94,7 +86,7 @@ export default class TomatoClock extends Component {
               <button
                 className="btn btn-primary"
                 onClick={this.handleReset}
-                style={{ margin: 5, width: "12vh" }}
+                style={btnStyle}
               >
                 Reset
               </button>

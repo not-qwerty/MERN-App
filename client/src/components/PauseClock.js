@@ -14,10 +14,7 @@ export default class PauseClock extends Component {
     this.handleReset = this.handleReset.bind(this);
   }
   componentDidUpdate() {
-    if (this.state.timer === 0) {
-      clearInterval(this.state.timeOutID);
-      // Here will be audio of the end of the timer
-    }
+    if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
   handleStart(e) {
@@ -52,12 +49,7 @@ export default class PauseClock extends Component {
   }
 
   render() {
-    const timerStyle = {
-      borderRadius: 25,
-      textAlign: "center",
-      borderStyle: "solid",
-      fontSize: "1em",
-    };
+
 
     let minutes = Math.floor((this.state.timer % 3600) / 60);
     let seconds = Math.floor(this.state.timer % 60);
@@ -69,7 +61,7 @@ export default class PauseClock extends Component {
         <div className="row">
           <div className="col-xs-3"></div>
           <div className="col-xs-6">
-            <div style={timerStyle}>
+            <div className='timer'>
               <h1>{this.props.title}</h1>
               <h2>{timeText}</h2>
               {this.state.startBtn ? (
