@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   async function getPosts() {
-    const posts = await fetch("http://localhost:5000/posts");
-    const data = await posts.json();
-
-    setPosts(data);
+    try {
+      axios.get("http://localhost:5000/posts").then((res) => {
+        setPosts(res.data);
+      });
+    } catch (err) {
+      console.error(err.message || err);
+    }
   }
 
   useEffect(() => {

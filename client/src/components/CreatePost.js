@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function CreatePost() {
   const [name, setName] = useState("");
@@ -8,16 +9,13 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const bodyRes = { name, title, postBody };
-      const response = await fetch("http://localhost:5000/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bodyRes),
-      });
+      axios.post("http://localhost:5000/posts", { name, title, postBody });
+
       alert("A post was sumbited");
-      setName('');
-      setTitle('');
-      setBody('');
+
+      setName("");
+      setTitle("");
+      setBody("");
     } catch (err) {
       console.error(err);
     }
@@ -39,7 +37,7 @@ export default function CreatePost() {
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <label>
           <div className="row">
@@ -62,7 +60,7 @@ export default function CreatePost() {
           <input type="text" value={postBody} onChange={handleBodyChange} />
         </label>
         <br />
-        
+
         <input type="submit" value="Submit" />
       </form>
     </div>
