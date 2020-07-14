@@ -1,29 +1,27 @@
 const router = require("express").Router();
-
+const asyncMiddleware = require("../middleware/async");
 const Post = require("../models/Post");
 
-router.get("/", async (req, res, next) => {
-  try {
-    const posts = await Post.find();
+router.get(
+  "/",
+  asyncMiddleware(async (req, res) => {
+    const posts = await Post.find().sort({date: -1});
     res.send(posts);
-  } catch (err) {
-    console.error(err.message || err);
-  }
-});
+  })
+);
 
-router.get("/:id", async (req, res, next) => {
-  try {
+router.get(
+  "/:id",
+  asyncMiddleware(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     res.send(post);
-    next();
-  } catch (err) {
-    console.error(err.message || err);
-  }
-});
+  })
+);
 
-router.post("/", (req, res, next) => {
-  try {
+router.post(
+  "/",
+  asyncMiddleware((req, res) => {
     const { name, title, postBody } = req.body;
     const post = new Post({
       name: name,
@@ -33,14 +31,12 @@ router.post("/", (req, res, next) => {
 
     post.save();
     res.send(post);
-  } catch (err) {
-    console.error(err.message || err);
-  }
-});
+  })
+);
 
-// TEST THIS
-router.put("/:id", async (req, res) => {
-  try {
+router.put(
+  "/:id",
+  asyncMiddleware(async (req, res) => {
     const { id } = req.params;
     const { postBody, title } = req.body;
     const post = await Post.findByIdAndUpdate(id, {
@@ -49,22 +45,19 @@ router.put("/:id", async (req, res) => {
     });
 
     res.send("Updated successfully");
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+  })
+);
 
-router.delete("/:id", async (req, res) => {
-  try {
+router.delete(
+  "/:id",
+  asyncMiddleware(async (req, res) => {
     const { id } = req.params;
     const deleted = await Post.findByIdAndDelete(id);
 
     deleted
       ? res.status(200).send("Deleted successfully")
       : res.send("Post not found");
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+  })
+);
 
 module.exports = router;

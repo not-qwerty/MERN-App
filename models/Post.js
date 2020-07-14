@@ -14,7 +14,12 @@ const postSchema = mongoose.Schema({
     required: true
   },
   userId: String,
-});
+  date: {
+    type: Date,
+    required: true,
+    default: Date.now()
+  }
+  });
 
 const Post = mongoose.model("Post", postSchema);
 

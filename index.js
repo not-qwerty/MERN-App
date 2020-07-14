@@ -1,10 +1,10 @@
+const error = require('./middleware/error');
 const express = require("express");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
-const cookieParser = require('cookie-parser');
-
+const cookieParser = require("cookie-parser");
 
 const app = express();
 require("./config/prod")(app);
@@ -32,9 +32,9 @@ app.use(helmet());
 
 // ROUTES
 app.use("/api/posts", require("./routes/posts"));
-app.use('/api/users', require('./routes/users'));
+app.use("/api/users", require("./routes/users"));
 
-
+app.use(error);
 
 // PROD SETUP
 if (process.env.NODE_ENV === "production") {
