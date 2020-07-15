@@ -7,7 +7,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-require("./config/prod")(app);
 
 // DATABASE CONNECT
 mongoose
