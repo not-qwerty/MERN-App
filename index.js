@@ -1,4 +1,4 @@
-const error = require('./middleware/error');
+const error = require("./middleware/error");
 const express = require("express");
 const helmet = require("helmet");
 const mongoose = require("mongoose");
@@ -16,6 +16,7 @@ mongoose
       useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     }
   )
   .then(() => console.log("connected to the database"))
@@ -32,7 +33,9 @@ app.use(helmet());
 // ROUTES
 app.use("/api/posts", require("./routes/posts"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
 
+// ERRORS
 app.use(error);
 
 // PROD SETUP
