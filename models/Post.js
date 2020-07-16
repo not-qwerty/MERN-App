@@ -31,7 +31,7 @@ function validatePost(post) {
     postBody: Joi.string().min(3).required(),
   };
 
-  retrun Joi.validate(post, schema);
+  return Joi.validate(post, schema);
 }
 
 module.exports = Post;
