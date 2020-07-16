@@ -2,9 +2,12 @@ const { User, validate } = require("../models/User");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const asyncMiddleware = require("../middleware/async");
+const jwt = require('jsonwebtoken');
 
 const router = require("express").Router();
 
+
+// REGISTER
 router.post(
   "/",
   asyncMiddleware(async (req, res) => {
@@ -29,7 +32,9 @@ router.post(
 
     user.save();
 
-    res.send({
+    const token = jwt.sign({ _id: user._id}, require('../config/config'))
+
+    res.header('x-auth-token', token).send({
       _id: user._id,
       name: user.name,
       email: user.email,
