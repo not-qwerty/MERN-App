@@ -8,14 +8,18 @@ const auth = require("../middleware/auth");
 const router = require("express").Router();
 
 // Get one user
-router.get("/me", auth, async (req, res) => {
-  const user = await User.findById(req.user._id);
+router.get(
+  "/me",
+  auth,
+  asyncMiddleware(async (req, res) => {
+    const user = await User.findById(req.user._id);
 
-  res.send({
-    name: user.name,
-    email: user.email,
-  });
-});
+    res.send({
+      name: user.name,
+      email: user.email,
+    });
+  })
+);
 
 // REGISTER
 router.post(
