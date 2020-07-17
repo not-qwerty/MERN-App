@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const asyncMiddleware = require("../middleware/async");
 const Joi = require("joi");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();
 
@@ -19,7 +19,6 @@ router.post(
     const { email, password } = req.body;
     const validPass = await bcrypt.compare(password, user.password, null);
     if (!validPass) return res.status(400).send("Invalid email or password");
-
 
     const token = user.generateAuthToken();
 

@@ -1,1 +1,1 @@
-module.exports = 'superSecretKey'
+module.exports = "superSecretKey";
