@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // components
 import Navbar from "./components/Navbar";
@@ -20,6 +20,7 @@ export default function App() {
         <Route path="/api/create" exact component={CreatePost} />
         <Route path="/api/chat" exact component={Chat} />
         <Route path="/api/pomodoro/" exact component={Pomodoro} />
+        <Redirect to="/api/posts" />
       </Switch>
     </div>
   );
