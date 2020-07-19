@@ -2,20 +2,33 @@ import React, { Component } from "react";
 import TomatoClock from "../components/TomatoClock";
 import PauseClock from "../components/PauseClock";
 
-import { Switch, Route, Link } from "react-router-dom";
-
 class Pomodoro extends Component {
   constructor() {
     super();
 
     this.state = {
+      togleTimer: true,
       tomatoTime: 1500,
       pauseTime: 300,
       tomatoTitle: "Pomodoro",
       pause: "Take a Break",
     };
   }
+
+  handleTogleTimer = () => {
+    this.setState({ togleTimer: !this.state.togleTimer });
+  };
+
   render() {
+
+    const {
+      togleTimer,
+      tomatoTime,
+      tomatoTitle,
+      pauseTime,
+      pause,
+    } = this.state;
+
     const mainStyle = {
       display: "flex",
       justifyContent: "center",
@@ -23,40 +36,34 @@ class Pomodoro extends Component {
       height: "40vh",
       textDecoration: "none",
       color: "black",
+      textAlign: "center",
     };
 
     const main = {
       padding: 20,
       borderStyle: "solid",
       textDecoration: "none",
+      width: "10vw",
+      display: "inline-block",
     };
 
     return (
       <div>
         <div style={mainStyle}>
-          <div className="main" style={main}>
-            <Link to="/pomodoro/clock">Tomato Session</Link>
-          </div>
-          <div className="main" style={main}>
-            <Link to="/pomodoro/pause">Take a break!</Link>
-          </div>
+          <button
+            style={main}
+            className="btn btn-primary"
+            onClick={() => this.handleTogleTimer()}
+          >
+            {togleTimer ? "Pause Clock" : "Tomato Clock"}
+          </button>
         </div>
         <div>
-          <Switch>
-            <Route path="/api/pomodoro/clock">
-              <TomatoClock
-                tomatoTime={this.state.tomatoTime}
-                title={this.state.tomatoTitle}
-              />
-            </Route>
-
-            <Route path="/api/pomodoro/pause">
-              <PauseClock
-                pauseTime={this.state.pauseTime}
-                title={this.state.pause}
-              />
-            </Route>
-          </Switch>
+          {togleTimer ? (
+            <TomatoClock tomatoTime={tomatoTime} title={tomatoTitle} />
+          ) : (
+            <PauseClock pauseTime={pauseTime} title={pause} />
+          )}
         </div>
       </div>
     );

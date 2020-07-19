@@ -16,18 +16,10 @@ export default function App() {
       <Navbar />
 
       <Switch>
-        <Route path="/api/posts">
-          <Posts />
-        </Route>
-        <Route path="/api/create">
-          <CreatePost />
-        </Route>
-        <Route path="/api/chat">
-          <Chat />
-        </Route>
-        <Route path="/api/pomodoro">
-          <Pomodoro />
-        </Route>
+        <Route path="/api/posts" exact component={Posts} />
+        <Route path="/api/create" exact component={CreatePost} />
+        <Route path="/api/chat" exact component={Chat} />
+        <Route path="/api/pomodoro/" exact component={Pomodoro} />
       </Switch>
     </div>
   );
