@@ -12,16 +12,15 @@ export default class TomatoClock extends Component {
       startBtn: true,
       timeOutID: "",
     };
-    this.handleStart = this.handleStart.bind(this);
-    this.handleStop = this.handleStop.bind(this);
-    this.handleReset = this.handleReset.bind(this);
   }
 
   componentDidUpdate() {
     if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
-  handleStart(e) {
+  handleStart = (e) => {
+    e.preventDefault();
+
     this.setState({
       startBtn: !this.state.startBtn,
     });
@@ -35,22 +34,26 @@ export default class TomatoClock extends Component {
     this.setState({
       timeOutID: timerID,
     });
-  }
+  };
 
-  handleStop(e) {
+  handleStop = (e) => {
+    e.preventDefault();
+
     clearInterval(this.state.timeOutID);
     this.setState({
       startBtn: !this.state.startBtn,
     });
-  }
+  };
 
-  handleReset() {
+  handleReset = (e) => {
+    e.preventDefault();
+
     clearInterval(this.state.timeOutID);
     this.setState({
       timer: this.props.tomatoTime,
       startBtn: true,
     });
-  }
+  };
 
   render() {
     let minutes = Math.floor((this.state.timer % 3600) / 60);
