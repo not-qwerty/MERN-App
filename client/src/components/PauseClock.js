@@ -9,15 +9,14 @@ export default class PauseClock extends Component {
       startBtn: true,
       timeOutID: "",
     };
-    this.handleStart = this.handleStart.bind(this);
-    this.handleStop = this.handleStop.bind(this);
-    this.handleReset = this.handleReset.bind(this);
   }
   componentDidUpdate() {
     if (this.state.timer === 0) clearInterval(this.state.timeOutID);
   }
 
-  handleStart(e) {
+  handleStart = (e) => {
+    e.preventDefault();
+
     this.setState({
       startBtn: !this.state.startBtn,
     });
@@ -31,26 +30,28 @@ export default class PauseClock extends Component {
     this.setState({
       timeOutID: timerID,
     });
-  }
+  };
 
-  handleStop(e) {
+  handleStop = (e) => {
+    e.preventDefault();
+
     clearInterval(this.state.timeOutID);
     this.setState({
       startBtn: !this.state.startBtn,
     });
-  }
+  };
 
-  handleReset() {
+  handleReset = (e) => {
+    e.preventDefault();
+
     clearInterval(this.state.timeOutID);
     this.setState({
       timer: this.props.pauseTime,
       startBtn: true,
     });
-  }
+  };
 
   render() {
-
-
     let minutes = Math.floor((this.state.timer % 3600) / 60);
     let seconds = Math.floor(this.state.timer % 60);
     let displayMinutes = minutes < 10 ? "0" + minutes : minutes;
@@ -61,7 +62,7 @@ export default class PauseClock extends Component {
         <div className="row">
           <div className="col-xs-3"></div>
           <div className="col-xs-6">
-            <div className='timer'>
+            <div className="timer">
               <h1>{this.props.title}</h1>
               <h2>{timeText}</h2>
               {this.state.startBtn ? (
