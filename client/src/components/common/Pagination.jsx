@@ -4,7 +4,6 @@ import _ from "lodash";
 export default function Pagination(props) {
   const { itemsCount, pageSize, currentPage, onPageChange } = props;
 
-  console.log(currentPage);
   const pagesCount = itemsCount / pageSize;
   if (pagesCount < 2) return null;
 
