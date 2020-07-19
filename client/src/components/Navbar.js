@@ -22,7 +22,7 @@ export default function Navbar() {
               <Link to="/api/chat">Our Chat</Link>
             </li>
             <li>
-              <Link to="/api/pomodoro/clock">Pomodoro Clock</Link>
+              <Link to="/api/pomodoro">Pomodoro Clock</Link>
             </li>
           </ul>
         </div>

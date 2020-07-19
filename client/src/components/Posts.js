@@ -36,7 +36,7 @@ export default function Posts() {
         <div className='container'><p>There are no posts yet.</p>
         <Link to='create'>Create a Post</Link></div>
       ) : (
-        posts.map((post) => {
+        pagePosts.map((post) => {
           return (
             <div key={post._id} className="container-post">
               <div>
