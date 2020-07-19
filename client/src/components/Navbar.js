@@ -25,6 +25,18 @@ export default function Navbar() {
               <Link to="/api/pomodoro">Pomodoro Clock</Link>
             </li>
           </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              <Link to="/api/register">
+                <i className="glyphicon glyphicon-user"></i> Sign Up
+              </Link>
+            </li>
+            <li>
+              <Link to="/api/login">
+                <i className="glyphicon glyphicon-log-in"></i> Login
+              </Link>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
