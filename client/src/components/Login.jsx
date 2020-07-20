@@ -21,8 +21,8 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const email = emailRef.current.value;
-    console.log(email);
+    const { email, password } = form;
+    console.log(email, password);
   };
 
   return (
