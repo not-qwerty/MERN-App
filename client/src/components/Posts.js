@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Pagination from "./common/Pagination";
 import { Link } from 'react-router-dom';
 import { paginate } from '../utils/paginate';
+import httpService from "../utils/httpService";
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -12,7 +12,7 @@ export default function Posts() {
 
   async function getPosts() {
     try {
-      axios.get("posts").then((res) => {
+      httpService.get("posts").then((res) => {
         setPosts(res.data);
       });
     } catch (err) {

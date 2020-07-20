@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import httpService from "../utils/httpService";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [form, setForm] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -19,24 +21,30 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { username, email, password } = form;
-    console.log(email, username, password);
+    try {
+      const { name, email, password } = form;
+
+      httpService.post("users", { name, email, password });
+    } catch (err) {
+      console.error(err.message || err);
+      toast(err.message);
+    }
   };
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="name">Username</label>
           <input
-            name="username"
-            value={form.username}
-            type="username"
+            name="name"
+            value={form.name}
+            type="name"
             className="form-control"
-            id="username"
+            id="name"
             placeholder="Enter username"
             onChange={updateField}
           />

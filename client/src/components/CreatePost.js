@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import httpService from "../utils/httpService";
+import { toast } from "react-toastify";
 
 export default function CreatePost() {
   const [name, setName] = useState("");
@@ -8,10 +9,11 @@ export default function CreatePost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      axios.post("posts", { name, title, postBody });
 
-      alert("A post was sumbited");
+    try {
+      httpService.post("posts", { name, title, postBody });
+
+      toast("Post was submitted");
 
       setName("");
       setTitle("");

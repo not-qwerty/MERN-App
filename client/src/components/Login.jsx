@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import httpService from "../utils/httpService";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -18,11 +20,17 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { email, password } = form;
-    console.log(email, password);
+    try {
+      const { email, password } = form;
+
+      httpService.post("users", { email, password });
+    } catch (err) {
+      console.error(err.message || err);
+      toast(err.message);
+    }
   };
 
   return (
