@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import httpService from "../utils/httpService";
+
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -23,7 +25,9 @@ export default function Login() {
     e.preventDefault();
 
     const { username, email, password } = form;
-    console.log(email, username, password);
+
+    httpService.post('/users', {username, email, password})
+
   };
 
   return (
