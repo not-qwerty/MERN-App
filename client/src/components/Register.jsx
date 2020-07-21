@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import httpService from "../utils/httpService";
 import { toast } from "react-toastify";
 
-export default function Login() {
+export default function Login(props) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -27,15 +27,17 @@ export default function Login() {
     try {
       const { name, email, password } = form;
 
-      httpService.post("users", { name, email, password });
+      await httpService.post("users", { name, email, password });
+      props.history.push("/api/login");
     } catch (err) {
       console.error(err.message || err);
-      toast(err.message);
+      toast.error(err.message);
     }
   };
 
   return (
     <div className="container">
+      <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Username</label>

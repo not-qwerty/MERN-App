@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import httpService from "../utils/httpService";
 import { toast } from "react-toastify";
 
-export default function Login() {
+export default function Login(props) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -26,15 +26,22 @@ export default function Login() {
     try {
       const { email, password } = form;
 
-      httpService.post("users", { email, password });
+      const { data } = await httpService.post("auth", { email, password });
+      localStorage.setItem("token", data);
+
+      props.history.push("/");
     } catch (err) {
+      if (err.response && err.response.status === 400) {
+        toast.error("Invalid credentials");
+      }
       console.error(err.message || err);
-      toast(err.message);
+      toast.error(err.message);
     }
   };
 
   return (
     <div className="container">
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
