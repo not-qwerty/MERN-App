@@ -9,7 +9,7 @@ import CreatePost from "./components/CreatePost";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Spinner from './components/common/Spinner';
+import Spinner from "./components/common/Spinner";
 
 // Containers
 import Pomodoro from "./containers/Pomodoro";
