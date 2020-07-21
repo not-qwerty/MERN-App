@@ -28,10 +28,13 @@ export default function Login(props) {
       const { name, email, password } = form;
 
       await httpService.post("users", { name, email, password });
+
       props.history.push("/api/login");
     } catch (err) {
-      console.error(err.message || err);
-      toast.error(err.message);
+      console.error(err.message)
+      if (err.response && err.response.status === 400) {
+        toast.error(err.response.data);
+      }
     }
   };
 
