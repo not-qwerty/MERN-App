@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   return (
     <div>
       <nav className="navbar navbar-inverse">
@@ -26,16 +26,34 @@ export default function Navbar() {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li>
-              <Link to="/api/register">
-                <i className="glyphicon glyphicon-user"></i> Sign Up
-              </Link>
-            </li>
-            <li>
-              <Link to="/api/login">
-                <i className="glyphicon glyphicon-log-in"></i> Login
-              </Link>
-            </li>
+            {!user && (
+              <>
+                <li>
+                  <Link to="/api/register">
+                    <i className="glyphicon glyphicon-user"></i> Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/api/login">
+                    <i className="glyphicon glyphicon-log-in"></i> Login
+                  </Link>
+                </li>
+              </>
+            )}
+            {user && (
+              <>
+                <li>
+                  <Link to="/api/me">
+                    <i className="glyphicon glyphicon-user"></i> {user.name}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/api/logout">
+                    <i className="glyphicon glyphicon-log-in"></i> Logout
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>

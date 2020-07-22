@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import httpService from "../utils/httpService";
 import { toast } from "react-toastify";
 
-export default function CreatePost() {
-  const [name, setName] = useState("");
+export default function CreatePost({ user }) {
   const [title, setTitle] = useState("");
   const [postBody, setBody] = useState("");
 
@@ -11,11 +10,10 @@ export default function CreatePost() {
     e.preventDefault();
 
     try {
-      httpService.post("posts", { name, title, postBody });
+      httpService.post("posts", { user, title, postBody });
 
       toast("Post was submitted");
 
-      setName("");
       setTitle("");
       setBody("");
     } catch (err) {
@@ -28,10 +26,6 @@ export default function CreatePost() {
     setBody(e.target.value);
   };
 
-  const handleNameChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value);
-  };
 
   const handleTitleChange = (e) => {
     e.preventDefault();
@@ -41,15 +35,7 @@ export default function CreatePost() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-        <label>
-          <div className="row">
-            <div className="col-xs-3">Enter your name:</div>
-            <div className="col-xs-6">
-              <input type="text" value={name} onChange={handleNameChange} />
-            </div>
-            <div className="col-xs-3"></div>
-          </div>
-        </label>
+
         <br />
         <label>
           Post title:
