@@ -32,7 +32,7 @@ export default function Posts() {
 
   return (
     <div>
-      {posts.length === 0 ? (
+      {!posts.length ? (
         <div className='container'><p>There are no posts yet.</p>
         <Link to='create'>Create a Post</Link></div>
       ) : (
