@@ -29,7 +29,7 @@ export default function Login(props) {
       const { data } = await httpService.post("auth", { email, password });
       localStorage.setItem("token", data);
 
-      props.history.push("/");
+      window.location = "/api/posts";
     } catch (err) {
       if (err.response && err.response.status === 400) {
         toast.error("Invalid credentials");

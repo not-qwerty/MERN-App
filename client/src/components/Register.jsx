@@ -35,7 +35,8 @@ export default function Login(props) {
 
       localStorage.setItem("token", response.headers["x-auth-token"]);
 
-      props.history.push("/api/posts");
+      window.location('/api/posts')
+      // props.history.push("/api/posts");
     } catch (err) {
       console.error(err.message);
       if (err.response && err.response.status === 400) {
