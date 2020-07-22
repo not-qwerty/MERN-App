@@ -27,12 +27,21 @@ export default function Login(props) {
     try {
       const { name, email, password } = form;
 
-      await httpService.post("users", { name, email, password });
+      const response = await httpService.post("users", {
+        name,
+        email,
+        password,
+      });
 
-      props.history.push("/api/login");
+      localStorage.setItem("token", response.headers["x-auth-token"]);
+
+      props.history.push("/api/posts");
     } catch (err) {
-      console.error(err.message)
+      console.error(err.message);
       if (err.response && err.response.status === 400) {
+        toast.error("Invalid credentials");
+        toast.error(err.response.data);
+      } else {
         toast.error(err.response.data);
       }
     }
