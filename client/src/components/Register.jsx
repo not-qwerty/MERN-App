@@ -35,14 +35,12 @@ export default function Login(props) {
 
       localStorage.setItem("token", response.headers["x-auth-token"]);
 
-      window.location('/api/posts')
+      window.location = "/api/posts";
       // props.history.push("/api/posts");
     } catch (err) {
       console.error(err.message);
       if (err.response && err.response.status === 400) {
         toast.error("Invalid credentials");
-        toast.error(err.response.data);
-      } else {
         toast.error(err.response.data);
       }
     }

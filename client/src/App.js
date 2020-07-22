@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
 // Components
@@ -17,6 +17,9 @@ import Logout from "./components/Logout";
 // Styles
 import "react-toastify/dist/ReactToastify.css";
 
+// Context
+import UserContext from "./context/UserContext";
+
 export default function App() {
   const [user, setUser] = useState({});
 
@@ -27,26 +30,29 @@ export default function App() {
 
       setUser(jwtUser);
     } catch (err) {
+      toast(err.message);
       // ignoring that
     }
   }, []);
 
   return (
-    <div>
-      <Navbar user={user} />
-      <Suspense fallback={<Spinner />}>
-        <Switch>
-          <Route path="/api/posts" exact component={Posts} />
-          <Route path="/api/create" exact component={CreatePost} user={user} />
-          <Route path="/api/login" exact component={Login} />
-          <Route path="/api/logout" exact component={Logout} />
-          <Route path="/api/register" exact component={Register} />
-          <Route path="/api/chat" exact component={Chat} />
-          <Route path="/api/pomodoro/" exact component={Pomodoro} />
-          <Redirect to="/api/posts" />
-        </Switch>
-        <ToastContainer />
-      </Suspense>
-    </div>
+    <UserContext.Provider value={{user, setUser}}>
+      <div>
+        <Navbar />
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route path="/api/posts" exact component={Posts} />
+            <Route path="/api/create" exact component={CreatePost} />
+            <Route path="/api/login" exact component={Login} />
+            <Route path="/api/logout" exact component={Logout} />
+            <Route path="/api/register" exact component={Register} />
+            <Route path="/api/chat" exact component={Chat} />
+            <Route path="/api/pomodoro/" exact component={Pomodoro} />
+            <Redirect to="/api/posts" />
+          </Switch>
+          <ToastContainer />
+        </Suspense>
+      </div>
+    </UserContext.Provider>
   );
 }

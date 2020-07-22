@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import httpService from "../utils/httpService";
 import { toast } from "react-toastify";
+import UserContext from "../context/UserContext";
 
-export default function CreatePost({ user }) {
+export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [postBody, setBody] = useState("");
+
+  const userContext = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      httpService.post("posts", { user, title, postBody });
+      const { name } = userContext.user;
+      httpService.post("posts", { name, title, postBody });
 
       toast("Post was submitted");
 
       setTitle("");
       setBody("");
     } catch (err) {
+      toast(err.message)
       console.error(err);
     }
   };
@@ -26,7 +31,6 @@ export default function CreatePost({ user }) {
     setBody(e.target.value);
   };
 
-
   const handleTitleChange = (e) => {
     e.preventDefault();
     setTitle(e.target.value);
@@ -35,7 +39,6 @@ export default function CreatePost({ user }) {
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
-
         <br />
         <label>
           Post title:
