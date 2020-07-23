@@ -14,14 +14,14 @@ export default function CreatePost() {
 
     try {
       const { name } = userContext.user;
-      httpService.post("posts", { name, title, postBody });
+      await httpService.post("posts", { name, title, postBody });
 
       toast("Post was submitted");
 
       setTitle("");
       setBody("");
     } catch (err) {
-      toast(err.message)
+      toast(err.message);
       console.error(err);
     }
   };

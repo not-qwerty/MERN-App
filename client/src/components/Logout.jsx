@@ -1,9 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import UserContext from "../context/UserContext";
+import React, { useEffect } from "react";
 
 export default function Logout() {
-  const userContext = useContext(UserContext)
-  console.log(userContext);
+
   useEffect(() => {
     localStorage.removeItem("token");
 

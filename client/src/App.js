@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
 // Components
@@ -30,13 +30,12 @@ export default function App() {
 
       setUser(jwtUser);
     } catch (err) {
-      toast(err.message);
       // ignoring that
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{user, setUser}}>
+    <UserContext.Provider value={{ user }}>
       <div>
         <Navbar />
         <Suspense fallback={<Spinner />}>

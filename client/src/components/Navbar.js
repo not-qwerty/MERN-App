@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
-export default function Navbar({ user }) {
+export default function Navbar() {
+  const userContext = useContext(UserContext);
+
+  const { name } = userContext.user;
+
   return (
     <div>
       <nav className="navbar navbar-inverse">
@@ -26,7 +31,7 @@ export default function Navbar({ user }) {
             </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            {!user && (
+            {!name && (
               <>
                 <li>
                   <Link to="/api/register">
@@ -40,11 +45,11 @@ export default function Navbar({ user }) {
                 </li>
               </>
             )}
-            {user && (
+            {name && (
               <>
                 <li>
                   <Link to="/api/me">
-                    <i className="glyphicon glyphicon-user"></i> {user.name}
+                    <i className="glyphicon glyphicon-user"></i> {name}
                   </Link>
                 </li>
                 <li>
