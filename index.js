@@ -4,7 +4,16 @@ const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
+
 const app = express();
+const http = require('http').createServer(app)
+var io = require('socket.io')(http)
+
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
+  })
+})
 
 require("./db/index")();
 
@@ -24,4 +33,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log("server is up and running on port", PORT));
+http.listen(PORT, () => console.log("server is up and running on port", PORT));
