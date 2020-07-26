@@ -1,17 +1,26 @@
 const express = require("express");
 const helmet = require("helmet");
-const cors = require("cors");
+// const cors = require("cors");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
+
 const app = express();
+const http = require('http').createServer(app)
+var io = require('socket.io')(http)
+
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    io.emit('message', { name, message })
+  })
+})
 
 require("./db/index")();
 
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+// app.use(cors());
 
 require("./routes/routes")(app);
 
@@ -24,4 +33,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log("server is up and running on port", PORT));
+http.listen(PORT, () => console.log("server is up and running on port", PORT));
