@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import io from 'socket.io-client'
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import API from "../utils/httpService";
 
-const socket = io.connect('http://localhost:5000')
+const socket = io.connect(API);
 
 export default function App() {
-  const [state, setState] = useState({ message: '', name: '' })
-  const [chat, setChat] = useState([])
+  const [state, setState] = useState({ message: "", name: "" });
+  const [chat, setChat] = useState([]);
 
   useEffect(() => {
-    socket.on('message', ({ name, message }) => {
-      setChat([...chat, { name, message }])
-    })
-  })
+    socket.on("message", ({ name, message }) => {
+      setChat([...chat, { name, message }]);
+    });
+  });
 
-  const onTextChange = e => {
-    setState({ ...state, [e.target.name]: e.target.value })
-  }
+  const onTextChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
-  const onMessageSubmit = e => {
-    e.preventDefault()
-    const { name, message } = state
-    socket.emit('message', { name, message })
-    setState({ message: '', name })
-  }
+  const onMessageSubmit = (e) => {
+    e.preventDefault();
+    const { name, message } = state;
+    socket.emit("message", { name, message });
+    setState({ message: "", name });
+  };
 
   const renderChat = () => {
     return chat.map(({ name, message }, index) => (
@@ -31,8 +32,8 @@ export default function App() {
           {name}: <span>{message}</span>
         </h3>
       </div>
-    ))
-  }
+    ));
+  };
 
   return (
     <div className="card">
@@ -41,7 +42,7 @@ export default function App() {
         <div className="name-field">
           <input
             name="name"
-            onChange={e => onTextChange(e)}
+            onChange={(e) => onTextChange(e)}
             value={state.name}
             label="Name"
           />
@@ -49,7 +50,7 @@ export default function App() {
         <div>
           <input
             name="message"
-            onChange={e => onTextChange(e)}
+            onChange={(e) => onTextChange(e)}
             value={state.message}
             id="outlined-multiline-static"
             variant="outlined"
@@ -63,5 +64,5 @@ export default function App() {
         {renderChat()}
       </div>
     </div>
-  )
+  );
 }
