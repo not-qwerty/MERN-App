@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "concurrently \"nodemon index.js\" \"npm start --prefix client\"",
-    "start": "node index.js",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
+    "start": "node index.js"
   },
   "engines": {
     "node": "v8.11.4"
