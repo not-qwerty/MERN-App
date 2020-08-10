@@ -35,7 +35,7 @@ userSchema.methods.generateAuthToken = function () {
       email: this.email,
       isAdmin: this.isAdmin,
     },
-    require("../config/config")
+    process.env.secretKey
   );
 };
 

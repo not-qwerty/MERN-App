@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
+
 module.exports = function () {
   mongoose
     .connect(
-      "mongodb+srv://max:Cm3h-JCEnGDqjWP@cluster0-zsw8p.mongodb.net/CHAT?retryWrites=true&w=majority",
+      process.env.MONGO_URI,
       {
         useFindAndModify: false,
         useNewUrlParser: true,
