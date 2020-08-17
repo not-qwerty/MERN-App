@@ -13,6 +13,14 @@ router.get(
 );
 
 router.get(
+  "/me",
+  asyncMiddleware(async (req, res) => {
+    const posts = await Post.find({ name: req.body.name }).sort({ date: -1 });
+    res.send(posts);
+  })
+);
+
+router.get(
   "/:id",
   auth,
   asyncMiddleware(async (req, res) => {
