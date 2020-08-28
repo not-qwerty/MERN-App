@@ -16,6 +16,11 @@ router.get(
   "/me",
   asyncMiddleware(async (req, res) => {
     const posts = await Post.find({ name: req.body.name }).sort({ date: -1 });
+
+    if (!posts) {
+      return res.status(404).send("Posts not found");
+    }
+
     res.send(posts);
   })
 );
@@ -26,6 +31,11 @@ router.get(
   asyncMiddleware(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
+
+    if (!post) {
+      return res.status(404).send(`Cant found post with id ${id}`);
+    }
+
     res.send(post);
   })
 );
@@ -42,7 +52,7 @@ router.post(
     });
 
     post.save();
-    res.send(post);
+    res.status(201).send(post);
   })
 );
 
@@ -70,7 +80,7 @@ router.delete(
 
     deleted
       ? res.status(200).send("Deleted successfully")
-      : res.send("Post not found");
+      : res.status(404).send("Post not found");
   })
 );
 
