@@ -26,12 +26,13 @@ router.post(
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
-    let user = await User.findOne({ email: req.body.email });
-    const userName = await User.findOne({ name: req.body.name });
+    const { name, email, password } = req.body;
+    
+    let user = await User.findOne({ email: email });
+    const userName = await User.findOne({ name: name });
 
     if (userName) return res.status(400).send("Username is already registered");
     if (user) return res.status(400).send("Email already registered");
-    const { name, email, password } = req.body;
 
     const salt = bcrypt.genSaltSync(10);
     const hashed = bcrypt.hashSync(password, salt);
