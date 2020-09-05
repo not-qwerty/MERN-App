@@ -1,9 +1,7 @@
 const { User } = require("../models/User");
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const asyncMiddleware = require("../middleware/async");
 const Joi = require("joi");
-const jwt = require("jsonwebtoken");
 
 const router = require("express").Router();
 
