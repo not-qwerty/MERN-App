@@ -1,8 +1,6 @@
 const { User, validate } = require("../models/User");
-const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const asyncMiddleware = require("../middleware/async");
-const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
 const router = require("express").Router();
