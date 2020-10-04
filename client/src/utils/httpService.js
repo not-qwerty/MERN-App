@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const API = "http://localhost:5000";
+const API = "http://127.0.0.1:5000/";
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
