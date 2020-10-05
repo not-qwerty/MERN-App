@@ -1,4 +1,4 @@
-# MERN Stack # Nodejs #Socket.io #React Hooks #MongoDB
+# MERN Stack # Nodejs #WebSocket #React Hooks #MongoDB
 
 To start this application use the following commands in the root directory:
  1) npm i && cd client npm i
